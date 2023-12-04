@@ -18,3 +18,8 @@
 ```
 [Part 1] Sum of IDs of all games that are possible from this bag: 2061
 ```
+
+### Part 2
+```
+[Part 2] Sum of all powers of minimal cube sets for each game: 72596
+```
