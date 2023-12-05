@@ -8,7 +8,7 @@
 #   ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾   #
 #             __.-----------.___________________________             #
 #            |  |  Answers  |   Part 1: 553079          |            #
-#            |  `-----------'   Part 2:                 |            #
+#            |  `-----------'   Part 2: 84363105        |            #
 #            `------------------------------------------'            #
 #│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│#
 
@@ -89,7 +89,24 @@ def Part1(input):
 #│  Part 2  │
 #╵----------'
 def Part2(input):
-    ...
+    GEAR = '*'
+    gear_ratios: list[int] = []
+    
+    # Convert each line string into a list of characters, making each a row in the 'schematic' matrix
+    schematic = np.array([list(line) for line in input])
+    
+    # Search the matrix for '*' symbols
+    for i in range(schematic.shape[0]):
+        for j in range(schematic.shape[1]):
+            if schematic[i, j] == GEAR:
+                adj_partnums = find_adjacent_partnums((i, j), schematic)
+                # If exactly two part numbers were found adjacent to a '*' symbol, then it's a gear.
+                # Multiply its adjacent part numbers together to get the gear ratio and add it to the list.
+                if len(adj_partnums) == 2:
+                    pn = list(adj_partnums.values())
+                    gear_ratios.append(pn[0] * pn[1])
+    
+    return sum(gear_ratios)
 
 
 if __name__ == "__main__":
@@ -97,4 +114,4 @@ if __name__ == "__main__":
     
     print(f"[Part 1] Sum of all part numbers in the schematic: {Part1(input)}")
     
-    # print(f"[Part 2] : {Part2(input)}")
+    print(f"[Part 2] Sum of all gear ratios in the schematic: {Part2(input)}")

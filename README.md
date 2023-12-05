@@ -33,3 +33,8 @@
 ```
 [Part 1] Sum of all part numbers in the schematic: 553079
 ```
+
+### Part 2
+```
+[Part 2] Sum of all gear ratios in the schematic: 84363105
+```
