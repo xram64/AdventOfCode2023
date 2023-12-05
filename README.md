@@ -38,3 +38,11 @@
 ```
 [Part 2] Sum of all gear ratios in the schematic: 84363105
 ```
+
+
+## 📅 Day 4
+
+### Part 1
+```
+[Part 1] Total points across all scratchcards: 22897
+```
