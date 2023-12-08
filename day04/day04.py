@@ -8,11 +8,12 @@
 #   ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾   #
 #             __.-----------.___________________________             #
 #            |  |  Answers  |   Part 1: 22897           |            #
-#            |  `-----------'   Part 2:                 |            #
+#            |  `-----------'   Part 2: 5095824         |            #
 #            `------------------------------------------'            #
 #│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│#
 
 import re
+from collections import defaultdict
 
 
 def Setup(filename):
@@ -50,7 +51,27 @@ def Part1(input):
 #│  Part 2  │
 #╵----------'
 def Part2(input):
-    ...
+    card_copy_counts: dict[int, int] = defaultdict(lambda: 1)  # Initialize all card counts to 1
+    
+    # Check each card and calculate the number of copies of other cards it will add
+    for card in input:
+        card_fields = [field.strip() for field in re.split(r'[\:\|]', card)]
+        
+        card_number: int           = int(re.findall(r'(\d+)', card_fields[0])[0])
+        winning_nums: list[int]    = list(map(int, card_fields[1].split()))
+        scratched_nums: list[int]  = list(map(int, card_fields[2].split()))
+        
+        # Determine which numbers appear in both the winning and scratched fields
+        numbers_matched = set(winning_nums).intersection(set(scratched_nums))
+        
+        # Calculate the number of subsequent cards that should be copied
+        new_copies = len(numbers_matched)
+
+        # For each copy needed, increase the copy count for each card by the number of copies for this card
+        for i in range(new_copies):
+            card_copy_counts[card_number + i + 1] += card_copy_counts[card_number]
+    
+    return sum(card_copy_counts.values())
 
 
 if __name__ == "__main__":
@@ -58,4 +79,4 @@ if __name__ == "__main__":
     
     print(f"[Part 1] Total points across all scratchcards: {Part1(input)}")
     
-    # print(f"[Part 2] : {Part2(input)}")
+    print(f"[Part 2] Total scratchcards won: {Part2(input)}")

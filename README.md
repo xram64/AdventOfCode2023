@@ -46,3 +46,8 @@
 ```
 [Part 1] Total points across all scratchcards: 22897
 ```
+
+### Part 2
+```
+[Part 2] Total scratchcards won: 5095824
+```
