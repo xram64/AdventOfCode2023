@@ -51,3 +51,11 @@
 ```
 [Part 2] Total scratchcards won: 5095824
 ```
+
+
+## 📅 Day 5
+
+### Part 1
+```
+[Part 1] Lowest location number found: 535088217
+```
