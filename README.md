@@ -59,3 +59,8 @@
 ```
 [Part 1] Lowest location number found: 535088217
 ```
+
+### Part 2
+```
+[Part 2] Lowest location number found: 51399228
+```
